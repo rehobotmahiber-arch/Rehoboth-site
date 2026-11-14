@@ -35,7 +35,7 @@
 
     <!-- Top Language Switcher Bar -->
     <div class="w-full max-w-md flex justify-end items-center mb-2 z-10">
-        <button onclick="toggleLanguage()" id="langBtn" class="text-xs bg-stone-200 text-stone-800 px-3 py-1.5 rounded-full font-medium hover:bg-stone-300 transition flex items-center gap-1 shadow-sm">
+        <button type="button" onclick="toggleLanguage()" id="langBtn" class="text-xs bg-stone-200 text-stone-800 px-3 py-1.5 rounded-full font-medium hover:bg-stone-300 transition flex items-center gap-1 shadow-sm cursor-pointer">
             <i class="fa-solid fa-globe"></i> English / አማርኛ
         </button>
     </div>
@@ -46,7 +46,7 @@
         <!-- Logo & Profile Section -->
         <div class="relative mb-4">
             <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full p-1 bg-gradient-to-tr from-orange-500 to-amber-300 shadow-xl flex items-center justify-center overflow-hidden bg-white">
-                <img id="profileLogo" src="logo.png" alt="ርኆቦት መንፈሳዊ ማህበር ሎጎ" class="w-full h-full object-contain rounded-full bg-white" style="aspect-ratio: 1/1;">
+                <img id="profileLogo" src="logo.png" alt="ርኆቦት መንፈሳዊ ማህበር ሎጎ" class="w-full h-full object-contain rounded-full bg-white">
             </div>
         </div>
 
@@ -112,10 +112,10 @@
 
         <!-- Action Buttons (Donation & Email) -->
         <div class="w-full grid grid-cols-2 gap-3 mb-6">
-            <button onclick="openModal('donationModal')" class="btn-spiritual text-white py-3 px-4 rounded-xl font-medium text-sm shadow-md flex items-center justify-center gap-2">
+            <button type="button" onclick="openModal('donationModal')" class="btn-spiritual text-white py-3 px-4 rounded-xl font-medium text-sm shadow-md flex items-center justify-center gap-2 cursor-pointer">
                 <i class="fa-solid fa-hand-holding-heart"></i> <span id="btnDonateText">ለመደገፍ ብቻ</span>
             </button>
-            <button onclick="openModal('emailModal')" class="bg-stone-900 text-white py-3 px-4 rounded-xl font-medium text-sm hover:bg-stone-800 transition shadow-md flex items-center justify-center gap-2">
+            <button type="button" onclick="openModal('emailModal')" class="bg-stone-900 text-white py-3 px-4 rounded-xl font-medium text-sm hover:bg-stone-800 transition shadow-md flex items-center justify-center gap-2 cursor-pointer">
                 <i class="fa-solid fa-envelope"></i> <span id="btnEmailText">ኢሜይል ይላኩልን</span>
             </button>
         </div>
@@ -132,7 +132,7 @@
     <!-- Donation Modal -->
     <div id="donationModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal('donationModal')" class="absolute top-4 right-4 text-stone-400 hover:text-stone-700 text-lg">
+            <button type="button" onclick="closeModal('donationModal')" class="absolute top-4 right-4 text-stone-400 hover:text-stone-700 text-lg cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <div class="flex items-center gap-3 mb-4">
@@ -153,7 +153,7 @@
                 </div>
                 <div class="flex justify-between items-center bg-white p-2.5 rounded-lg border border-stone-200">
                     <span id="bank1Num" class="font-mono font-semibold text-stone-700 text-sm">1000000000000</span>
-                    <button onclick="copyText('bank1Num')" class="text-xs bg-stone-900 text-white px-3 py-1.5 rounded-lg hover:bg-stone-800 transition copy-btn">
+                    <button type="button" onclick="copyText('bank1Num')" class="text-xs bg-stone-900 text-white px-3 py-1.5 rounded-lg hover:bg-stone-800 transition copy-btn cursor-pointer">
                         <i class="fa-solid fa-copy mr-1"></i> ቁጥሩን ቅዳ
                     </button>
                 </div>
@@ -167,7 +167,7 @@
                 </div>
                 <div class="flex justify-between items-center bg-white p-2.5 rounded-lg border border-stone-200">
                     <span id="bank2Num" class="font-mono font-semibold text-stone-700 text-sm">2000000000000</span>
-                    <button onclick="copyText('bank2Num')" class="text-xs bg-stone-900 text-white px-3 py-1.5 rounded-lg hover:bg-stone-800 transition copy-btn">
+                    <button type="button" onclick="copyText('bank2Num')" class="text-xs bg-stone-900 text-white px-3 py-1.5 rounded-lg hover:bg-stone-800 transition copy-btn cursor-pointer">
                         <i class="fa-solid fa-copy mr-1"></i> ቁጥሩን ቅዳ
                     </button>
                 </div>
@@ -188,7 +188,7 @@
     <!-- Email Modal -->
     <div id="emailModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeModal('emailModal')" class="absolute top-4 right-4 text-stone-400 hover:text-stone-700 text-lg">
+            <button type="button" onclick="closeModal('emailModal')" class="absolute top-4 right-4 text-stone-400 hover:text-stone-700 text-lg cursor-pointer">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <div class="flex items-center gap-3 mb-4">
@@ -206,7 +206,7 @@
                     <p id="emailLabelText" class="text-[10px] text-stone-500 uppercase font-bold">የማህበሩ ኢሜይል አድራሻ</p>
                     <span id="displayEmail" class="text-xs font-semibold text-stone-800">rehobotmahiber@gmail.com</span>
                 </div>
-                <button onclick="copyText('displayEmail')" class="text-xs bg-stone-200 text-stone-700 px-2.5 py-1 rounded-lg hover:bg-stone-300 transition copyTextBtn">
+                <button type="button" onclick="copyText('displayEmail')" class="text-xs bg-stone-200 text-stone-700 px-2.5 py-1 rounded-lg hover:bg-stone-300 transition copyTextBtn cursor-pointer">
                     አድራሻ ቅዳ
                 </button>
             </div>
@@ -224,7 +224,7 @@
                     <label id="labelMessage" class="block text-xs font-semibold text-stone-700 mb-1">መልዕክትዎ (Your Message)</label>
                     <textarea id="emailBody" rows="4" required placeholder="መልዕክትዎን ወይም የጸሎት ጥያቄዎን እዚህ ይጻፉ..." class="w-full text-xs p-3 rounded-xl border border-stone-200 focus:outline-none focus:border-orange-500 bg-stone-50"></textarea>
                 </div>
-                <button type="submit" id="sendEmailBtnText" class="btn-spiritual text-white w-full py-3 rounded-xl font-medium text-xs shadow-md flex items-center justify-center gap-2">
+                <button type="submit" id="sendEmailBtnText" class="btn-spiritual text-white w-full py-3 rounded-xl font-medium text-xs shadow-md flex items-center justify-center gap-2 cursor-pointer">
                     <i class="fa-solid fa-paper-plane"></i> በኢሜይል መተግበሪያ ላክ (Send via Email App)
                 </button>
             </form>
@@ -241,24 +241,40 @@
         let currentLang = 'am';
 
         function openModal(modalId) {
-            document.getElementById(modalId).classList.remove('hidden');
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('hidden');
+            }
         }
         function closeModal(modalId) {
-            document.getElementById(modalId).classList.add('hidden');
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('hidden');
+            }
         }
 
         function copyText(elementId) {
-            const text = document.getElementById(elementId).innerText;
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            const text = el.innerText;
             navigator.clipboard.writeText(text).then(() => {
                 alert(currentLang === 'am' ? 'ተቀድቷል (Copied): ' + text : 'Copied: ' + text);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
             });
         }
 
         function sendEmail(event) {
             event.preventDefault();
-            const name = document.getElementById('senderName').value;
-            const subject = document.getElementById('emailSubject').value;
-            const body = document.getElementById('emailBody').value;
+            const nameEl = document.getElementById('senderName');
+            const subjectEl = document.getElementById('emailSubject');
+            const bodyEl = document.getElementById('emailBody');
+            
+            if (!nameEl || !subjectEl || !bodyEl) return;
+
+            const name = nameEl.value;
+            const subject = subjectEl.value;
+            const body = bodyEl.value;
             const email = "rehobotmahiber@gmail.com";
 
             const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("ስም/Name: " + name + "\n\n" + body)}`;
@@ -300,11 +316,4 @@
                 document.getElementById('btnEmailText').innerText = "ኢሜይል ይላኩልን";
                 
                 document.getElementById('modalDonateTitle').innerText = "ለመደገፍ የባንክ አካውንቶች";
-                document.getElementById('modalDonateSub').innerText = "ለማህበራችን አገልግሎት ድጋፍ ያድርጉ";
-                document.querySelectorAll('.copy-btn').forEach(el => el.innerHTML = '<i class="fa-solid fa-copy mr-1"></i> ቁጥሩን ቅዳ');
-                document.getElementById('receiptText').innerHTML = '<i class="fa-solid fa-circle-info text-sky-600 mr-1"></i> ድጋፍ ከሰጡ በኋላ የከፈሉበትን ደረሰኝ (Screenshot) በቴሌግራም ይላኩልን።';
-                document.getElementById('receiptBtnText').innerHTML = '<i class="fa-brands fa-telegram text-sm"></i> ደረሰኝ በቴሌግራም ላክ';
-                
-                document.getElementById('modalEmailTitle').innerText = "ኢሜይል ይላኩልን";
-                document.getElementById('modalEmailSub').innerText = "መልዕክትዎን በቀጥታ ይጻፉ";
-    
+                document.getElementByI
