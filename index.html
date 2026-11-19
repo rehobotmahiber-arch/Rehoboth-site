@@ -1,347 +1,454 @@
 <!DOCTYPE html>
-<html lang="am" dir="ltr">
+<html lang="am">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ርኆቦት መንፈሳዊ ማህበር - Link in Bio</title>
-    <!-- Google Fonts for Amharic -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Noto Sans Ethiopic', sans-serif;
-            background-color: #FFFDF9;
-            color: #1F2937;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(234, 88, 12, 0.15);
-        }
-        .btn-spiritual {
-            background: linear-gradient(135deg, #EA580C 0%, #C2410C 100%);
-            transition: all 0.3s ease;
-        }
-        .btn-spiritual:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -5px rgba(234, 88, 12, 0.3);
-        }
-        /* Modals */
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 50;
-            align-items: center;
-            justify-content: center;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-        }
-        .modal.is-open { display: flex; }
-
-        /* Logo styling */
-        .logo-ring {
-            width: 7rem;
-            aspect-ratio: 1 / 1;
-        }
-        @media (min-width: 640px) {
-            .logo-ring { width: 8rem; }
-        }
-        .logo-ring img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 9999px;
-            display: block;
-        }
-
-        #toast {
-            position: fixed;
-            left: 50%;
-            bottom: 1.5rem;
-            transform: translate(-50%, 1rem);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity .2s ease, transform .2s ease;
-            z-index: 60;
-        }
-        #toast.show { opacity: 1; transform: translate(-50%, 0); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ርኆቦት መንፈሳዊ ማህበር</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Noto Sans Ethiopic", system-ui, -apple-system, sans-serif;
+    background: #f4f5f7;
+    color: #1f2937;
+    line-height: 1.5;
+  }
+  .page {
+    max-width: 460px;
+    margin: 0 auto;
+    padding: 28px 16px 40px;
+  }
+  .profile {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .avatar-wrap {
+    width: 112px;
+    height: 112px;
+    margin: 0 auto 14px;
+    border-radius: 999px;
+    padding: 3px;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+  }
+  .avatar-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 999px;
+    display: block;
+    background: #fff;
+  }
+  .title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 800;
+    color: #111827;
+  }
+  .handle {
+    margin: 4px 0 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #e11d48;
+    word-break: break-word;
+  }
+  .verse {
+    margin: 0 auto;
+    max-width: 390px;
+    font-size: 13.5px;
+    color: #4b5563;
+  }
+  .links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .link-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: #111827;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .link-card:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  }
+  .link-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+  }
+  .social-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .ic-site { background: #0f766e; }
+  .ic-tiktok { background: #111827; }
+  .ic-youtube { background: #dc2626; }
+  .ic-telegram { background: #0ea5e9; }
+  .ic-facebook { background: #1877f2; }
+  .ic-instagram { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af); }
+  .link-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: #111827;
+  }
+  .ext-icon {
+    color: #9ca3af;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .action-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .btn-support,
+  .btn-email {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .btn-support {
+    background: #c2410c;
+  }
+  .btn-support:hover {
+    background: #9a3412;
+  }
+  .btn-email {
+    background: #111827;
+  }
+  .btn-email:hover {
+    background: #1f2937;
+  }
+  .box {
+    margin-top: 16px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  }
+  .box-title {
+    margin: 0 0 12px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .bank-item {
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+  .bank-item:last-child {
+    margin-bottom: 0;
+  }
+  .bank-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #111827;
+  }
+  .bank-head img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 6px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+  }
+  .copy-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 8px 10px;
+  }
+  .acct-num {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: #111827;
+    word-break: break-all;
+  }
+  .copy-btn {
+    border: none;
+    background: #111827;
+    color: #ffffff;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .copy-btn:hover {
+    background: #374151;
+  }
+  .email-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
+  }
+  .email-link {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #1d4ed8;
+    text-decoration: none;
+    word-break: break-all;
+  }
+  .form-group {
+    margin-bottom: 10px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: #374151;
+  }
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 9px 11px;
+    font-family: inherit;
+    font-size: 13.5px;
+    color: #111827;
+    background: #ffffff;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    outline: 2px solid #111827;
+    outline-offset: 1px;
+  }
+  .submit-btn {
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    background: #111827;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .submit-btn:hover {
+    background: #1f2937;
+  }
+  footer {
+    margin-top: 26px;
+    text-align: center;
+    font-size: 12.5px;
+    color: #6b7280;
+  }
+</style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 relative overflow-x-hidden">
+<body>
+<div class="page">
+  <header class="profile">
+    <div class="avatar-wrap">
+      <img src="logo.png" alt="ርኆቦት መንፈሳዊ ማህበር" onerror="this.style.display='none'">
+    </div>
+    <h1 class="title">ርኆቦት መንፈሳዊ ማህበር</h1>
+    <div class="handle">@rehobot_menfesawi_mahber</div>
+    <p class="verse">«እግዚአብሔር አሁን ስፍራ አሰፋልን፥ በምድርም ላይ እንበዛለን።» (ዘፍ 26:22)</p>
+  </header>
 
-    <!-- Language switcher -->
-    <div class="w-full max-w-md flex justify-end items-center mb-2 z-10">
-        <button type="button" id="langBtn" class="text-xs bg-stone-200 text-stone-800 px-3 py-1.5 rounded-full font-medium hover:bg-stone-300 transition flex items-center gap-1 shadow-sm cursor-pointer" onclick="toggleLanguage()">
-            <i class="fa-solid fa-globe"></i> English / አማርኛ
-        </button>
+  <main>
+    <nav class="links" aria-label="Links">
+      <a class="link-card" href="https://rehobotmahiber-arch.github.io/rehobot-official/" target="_blank" rel="noopener noreferrer">
+        <span class="link-left">
+          <span class="social-icon ic-site"><i class="fa-solid fa-globe"></i></span>
+          <span class="link-label">ኦፊሴላዊ ድረ-ገጽ (Official Website)</span>
+        </span>
+        <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
+      </a>
+
+      <a class="link-card" href="https://www.tiktok.com/@rehobot_menfesawi" target="_blank" rel="noopener noreferrer">
+        <span class="link-left">
+          <span class="social-icon ic-tiktok"><i class="fa-brands fa-tiktok"></i></span>
+          <span class="link-label">ቲክቶክ (TikTok)</span>
+        </span>
+        <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
+      </a>
+
+      <a class="link-card" href="https://www.youtube.com/@rehobot_menfesawi" target="_blank" rel="noopener noreferrer">
+        <span class="link-left">
+          <span class="social-icon ic-youtube"><i class="fa-brands fa-youtube"></i></span>
+          <span class="link-label">ዩቲዩብ (YouTube)</span>
+        </span>
+        <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
+      </a>
+
+      <a class="link-card" href="https://t.me/rehobot_menfesawi_mahiber" target="_blank" rel="noopener noreferrer">
+        <span class="link-left">
+          <span class="social-icon ic-telegram"><i class="fa-brands fa-telegram"></i></span>
+          <span class="link-label">ቴሌግራም ቻናል (Telegram)</span>
+        </span>
+        <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
+      </a>
+
+      <a class="link-card" href="https://www.facebook.com/rehobotmenfesawi" target="_blank" rel="noopener noreferrer">
+        <span class="link-left">
+          <span class="social-icon ic-facebook"><i class="fa-brands fa-facebook-f"></i></span>
+          <span class="link-label">ፌስቡክ ገጽ (Facebook)</span>
+        </span>
+        <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
+      </a>
+
+      <a class="link-card" href="https://www.instagram.com/rehobot_menfesawi" target="_blank" rel="noopener noreferrer">
+        <span class="link-left">
+          <span class="social-icon ic-instagram"><i class="fa-brands fa-instagram"></i></span>
+          <span class="link-label">ኢንስታግራም (Instagram)</span>
+        </span>
+        <i class="fa-solid fa-arrow-up-right-from-square ext-icon"></i>
+      </a>
+    </nav>
+
+    <div class="action-row">
+      <a class="btn-support" href="#support-banks">
+        <i class="fa-solid fa-hand-holding-heart"></i>
+        <span>ለመደገፍ ብቻ</span>
+      </a>
+      <a class="btn-email" href="#email-section">
+        <i class="fa-solid fa-envelope"></i>
+        <span>ኢሜይል ይላኩልን</span>
+      </a>
     </div>
 
-    <!-- Main Container -->
-    <main class="w-full max-w-md flex flex-col items-center z-10 mb-8">
-        
-        <!-- Logo -->
-        <div class="relative mb-4">
-            <div class="logo-ring rounded-full p-1 bg-gradient-to-tr from-orange-500 to-amber-300 shadow-xl flex items-center justify-center">
-                <div class="w-full h-full rounded-full overflow-hidden bg-white flex items-center justify-center">
-                    <img id="profileLogo" src="logo.png" alt="ርኆቦት መንፈሳዊ ማህበር ሎጎ" onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='flex';">
-                    <div id="logoFallback" class="w-full h-full items-center justify-center text-orange-600 text-3xl" style="display:none;">
-                        <i class="fa-solid fa-cross"></i>
-                    </div>
-                </div>
-            </div>
+    <section id="support-banks" class="box">
+      <h2 class="box-title"><i class="fa-solid fa-building-columns"></i> የድጋፍ ባንክ ሒሳቦች</h2>
+
+      <div class="bank-item">
+        <div class="bank-head">
+          <img src="wegagen.jpg" alt="" onerror="this.style.display='none'">
+          <span>ወጋገን ባንክ (Wegagen Bank)</span>
         </div>
-
-        <!-- Title & Bio -->
-        <h1 data-i18n="title" class="text-2xl sm:text-3xl font-bold text-stone-900 text-center tracking-tight mb-1">ርኆቦት መንፈሳዊ ማህበር</h1>
-        <p class="text-sm text-orange-600 font-medium mb-3">@rehobot_menfesawi_mahber</p>
-        <p data-i18n="bio" class="text-xs sm:text-sm text-stone-600 text-center max-w-xs mb-6 leading-relaxed">
-            «እግዚአብሔር አሁን ስፍራ አሰፋልን፥ በምድርም ላይ እንበዛለን።» (ዘፍ 26:22)
-        </p>
-
-        <!-- Social Media Links -->
-        <div class="w-full space-y-3 mb-6">
-            <a href="https://tiktok.com/@rehobot_menfesawi_mahber" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3.5 rounded-xl glass-card hover:border-orange-500 transition group shadow-sm">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-stone-900 text-white flex items-center justify-center text-lg group-hover:scale-105 transition">
-                        <i class="fa-brands fa-tiktok"></i>
-                    </div>
-                    <span data-i18n="tiktok" class="font-semibold text-stone-800 text-sm">ቲክቶክ (TikTok)</span>
-                </div>
-                <i class="fa-solid fa-arrow-up-right-from-square text-stone-400 text-xs"></i>
-            </a>
-
-            <a href="https://youtube.com/channel/UCsnrwEY215SJY3bAtR3qXaA?si=5hBrQuPxcmurSO08" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3.5 rounded-xl glass-card hover:border-orange-500 transition group shadow-sm">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-red-600 text-white flex items-center justify-center text-lg group-hover:scale-105 transition">
-                        <i class="fa-brands fa-youtube"></i>
-                    </div>
-                    <span data-i18n="youtube" class="font-semibold text-stone-800 text-sm">ዩቲዩብ (YouTube)</span>
-                </div>
-                <i class="fa-solid fa-arrow-up-right-from-square text-stone-400 text-xs"></i>
-            </a>
-
-            <a href="https://t.me/rehobot_menfesawi_mahiber" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3.5 rounded-xl glass-card hover:border-orange-500 transition group shadow-sm">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-sky-500 text-white flex items-center justify-center text-lg group-hover:scale-105 transition">
-                        <i class="fa-brands fa-telegram"></i>
-                    </div>
-                    <span data-i18n="telegram" class="font-semibold text-stone-800 text-sm">ቴሌግራም ቻናል (Telegram)</span>
-                </div>
-                <i class="fa-solid fa-arrow-up-right-from-square text-stone-400 text-xs"></i>
-            </a>
-
-            <a href="https://www.facebook.com/share/1CYjLMvtUD/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3.5 rounded-xl glass-card hover:border-orange-500 transition group shadow-sm">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-blue-600 text-white flex items-center justify-center text-lg group-hover:scale-105 transition">
-                        <i class="fa-brands fa-facebook-f"></i>
-                    </div>
-                    <span data-i18n="facebook" class="font-semibold text-stone-800 text-sm">ፌስቡክ ገጽ (Facebook)</span>
-                </div>
-                <i class="fa-solid fa-arrow-up-right-from-square text-stone-400 text-xs"></i>
-            </a>
-
-            <a href="https://www.instagram.com/rehobot_menfesawi_mahiber?vrfl=MTlpbHIzbmw5MHR5ag==" target="_blank" rel="noopener noreferrer" class="flex items-center justify-between p-3.5 rounded-xl glass-card hover:border-orange-500 transition group shadow-sm">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white flex items-center justify-center text-lg group-hover:scale-105 transition">
-                        <i class="fa-brands fa-instagram"></i>
-                    </div>
-                    <span data-i18n="instagram" class="font-semibold text-stone-800 text-sm">ኢንስታግራም (Instagram)</span>
-                </div>
-                <i class="fa-solid fa-arrow-up-right-from-square text-stone-400 text-xs"></i>
-            </a>
+        <div class="copy-row">
+          <span class="acct-num" id="wegagenAcct">0848650030101</span>
+          <button type="button" class="copy-btn" data-copy="wegagenAcct">ቅዳ</button>
         </div>
+      </div>
 
-        <!-- Action Buttons (Donation & Email) -->
-        <div class="w-full grid grid-cols-2 gap-3 mb-6">
-            <button type="button" onclick="openModal('donationModal')" class="btn-spiritual text-white py-3 px-4 rounded-xl font-medium text-sm shadow-md flex items-center justify-center gap-2 cursor-pointer">
-                <i class="fa-solid fa-hand-holding-heart"></i> <span data-i18n="btnDonate">ለመደገፍ ብቻ</span>
-            </button>
-            <button type="button" onclick="openModal('emailModal')" class="bg-stone-900 text-white py-3 px-4 rounded-xl font-medium text-sm hover:bg-stone-800 transition shadow-md flex items-center justify-center gap-2 cursor-pointer">
-                <i class="fa-solid fa-envelope"></i> <span data-i18n="btnEmail">ኢሜይል ይላኩልን</span>
-            </button>
+      <div class="bank-item">
+        <div class="bank-head">
+          <img src="ahadu.jpg" alt="" onerror="this.style.display='none'">
+          <span>አሀዱ ባንክ (Ahadu Bank)</span>
         </div>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="w-full text-center text-xs text-stone-500 z-10 py-2 border-t border-stone-200">
-        &copy; 2026 ርኆቦት መንፈሳዊ ማህበር. All rights reserved.
-    </footer>
-
-    <!-- Toast Notification -->
-    <div id="toast" class="bg-stone-900 text-white text-xs px-4 py-2 rounded-lg shadow-lg">ተቀድቷል!</div>
-
-    <!-- ================= MODALS ================= -->
-
-    <!-- Donation Modal -->
-    <div id="donationModal" class="modal">
-        <div class="bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button type="button" onclick="closeModal('donationModal')" class="absolute top-4 right-4 text-stone-400 hover:text-stone-700 text-lg cursor-pointer p-1">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="flex items-center gap-3 mb-4">
-                <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center text-lg">
-                    <i class="fa-solid fa-building-columns"></i>
-                </div>
-                <div>
-                    <h3 data-i18n="modalDonateTitle" class="font-bold text-stone-900 text-base">ለመደገፍ የባንክ አካውንቶች</h3>
-                    <p data-i18n="modalDonateSub" class="text-xs text-stone-500">ለማህበራችን አገልግሎት ድጋፍ ያድርጉ</p>
-                </div>
-            </div>
-
-            <!-- Bank 1 -->
-            <div class="bg-stone-50 p-4 rounded-xl border border-stone-200 mb-3">
-                <div class="flex justify-between items-center mb-1">
-                    <span class="font-bold text-sm text-stone-800">የኢትዮጵያ ንግድ ባንክ (CBE)</span>
-                    <span class="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded font-medium" data-i18n="acc1">አካውንት 1</span>
-                </div>
-                <div class="flex justify-between items-center bg-white p-2.5 rounded-lg border border-stone-200">
-                    <span id="bank1Num" class="font-mono font-semibold text-stone-700 text-sm">1000000000000</span>
-                    <button type="button" onclick="copyText('bank1Num')" class="text-xs bg-stone-900 text-white px-3 py-1.5 rounded-lg hover:bg-stone-800 transition cursor-pointer">
-                        <i class="fa-solid fa-copy mr-1"></i> <span data-i18n="copyBtn">ቁጥሩን ቅዳ</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Bank 2 -->
-            <div class="bg-stone-50 p-4 rounded-xl border border-stone-200 mb-4">
-                <div class="flex justify-between items-center mb-1">
-                    <span class="font-bold text-sm text-stone-800">አቢሲኒያ ባንክ (Bank of Abyssinia)</span>
-                    <span class="text-xs bg-orange-100 text-orange-700 px-2 py-0.5 rounded font-medium" data-i18n="acc2">አካውንት 2</span>
-                </div>
-                <div class="flex justify-between items-center bg-white p-2.5 rounded-lg border border-stone-200">
-                    <span id="bank2Num" class="font-mono font-semibold text-stone-700 text-sm">2000000000000</span>
-                    <button type="button" onclick="copyText('bank2Num')" class="text-xs bg-stone-900 text-white px-3 py-1.5 rounded-lg hover:bg-stone-800 transition cursor-pointer">
-                        <i class="fa-solid fa-copy mr-1"></i> <span data-i18n="copyBtn">ቁጥሩን ቅዳ</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Telegram Receipt Instruction -->
-            <div class="bg-sky-50 border border-sky-200 p-3.5 rounded-xl text-center">
-                <p data-i18n="receiptText" class="text-xs text-sky-900 font-medium mb-2">
-                    <i class="fa-solid fa-circle-info text-sky-600 mr-1"></i> ድጋፍ ከሰጡ በኋላ የከፈሉበትን ደረሰኝ (Screenshot) በቴሌግራም ይላኩልን።
-                </p>
-                <a href="https://t.me/rehobot_menfesawi_mahiber" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 bg-sky-500 hover:bg-sky-600 text-white text-xs font-semibold py-2 px-4 rounded-lg transition w-full">
-                    <i class="fa-brands fa-telegram text-sm"></i> <span data-i18n="receiptBtn">ደረሰኝ በቴሌግራም ላክ</span>
-                </a>
-            </div>
+        <div class="copy-row">
+          <span class="acct-num" id="ahaduAcct">0045570810901</span>
+          <button type="button" class="copy-btn" data-copy="ahaduAcct">ቅዳ</button>
         </div>
-    </div>
+      </div>
+    </section>
 
-    <!-- Email Modal -->
-    <div id="emailModal" class="modal">
-        <div class="bg-white w-full max-w-md rounded-2xl p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <button type="button" onclick="closeModal('emailModal')" class="absolute top-4 right-4 text-stone-400 hover:text-stone-700 text-lg cursor-pointer p-1">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div class="flex items-center gap-3 mb-4">
-                <div class="w-10 h-10 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center text-lg">
-                    <i class="fa-solid fa-envelope-open-text"></i>
-                </div>
-                <div>
-                    <h3 data-i18n="modalEmailTitle" class="font-bold text-stone-900 text-lg">ኢሜይል ይላኩልን</h3>
-                    <p data-i18n="modalEmailSub" class="text-xs text-stone-500">መልዕክትዎን በቀጥታ ይጻፉ</p>
-                </div>
-            </div>
+    <section id="email-section" class="box">
+      <h2 class="box-title"><i class="fa-solid fa-envelope"></i> ኢሜይል</h2>
+      <div class="email-bar">
+        <a id="mahiberEmail" class="email-link" href="mailto:rehobotmahiber@gmail.com">rehobotmahiber@gmail.com</a>
+        <button type="button" class="copy-btn" data-copy="mahiberEmail">ቅዳ</button>
+      </div>
 
-            <div class="bg-stone-50 p-3 rounded-xl border border-stone-200 mb-4 flex items-center justify-between">
-                <div>
-                    <p data-i18n="emailLabelText" class="text-[10px] text-stone-500 uppercase font-bold">የማህበሩ ኢሜይል አድራሻ</p>
-                    <span id="displayEmail" class="text-xs font-semibold text-stone-800">rehobotmahiber@gmail.com</span>
-                </div>
-                <button type="button" onclick="copyText('displayEmail')" class="text-xs bg-stone-200 text-stone-700 px-2.5 py-1 rounded-lg hover:bg-stone-300 transition cursor-pointer">
-                    <span data-i18n="copyAddress">አድራሻ ቅዳ</span>
-                </button>
-            </div>
-
-            <form onsubmit="sendEmail(event)" class="space-y-3">
-                <div>
-                    <label data-i18n="labelName" class="block text-xs font-semibold text-stone-700 mb-1">የእርስዎ ስም (Your Name)</label>
-                    <input type="text" id="senderName" required data-i18n-placeholder="namePlaceholder" placeholder="ሙሉ ስምዎን ያስገቡ..." class="w-full text-xs p-3 rounded-xl border border-stone-200 focus:outline-none focus:border-orange-500 bg-stone-50">
-                </div>
-                <div>
-                    <label data-i18n="labelSubject" class="block text-xs font-semibold text-stone-700 mb-1">ርዕስ (Subject)</label>
-                    <input type="text" id="emailSubject" required data-i18n-placeholder="subjectPlaceholder" placeholder="የመልዕክቱ ርዕስ..." class="w-full text-xs p-3 rounded-xl border border-stone-200 focus:outline-none focus:border-orange-500 bg-stone-50">
-                </div>
-                <div>
-                    <label data-i18n="labelMessage" class="block text-xs font-semibold text-stone-700 mb-1">መልዕክትዎ (Your Message)</label>
-                    <textarea id="emailBody" rows="4" required data-i18n-placeholder="msgPlaceholder" placeholder="መልዕክትዎን ወይም የጸሎት ጥያቄዎን እዚህ ይጻፉ..." class="w-full text-xs p-3 rounded-xl border border-stone-200 focus:outline-none focus:border-orange-500 bg-stone-50"></textarea>
-                </div>
-                <button type="submit" class="btn-spiritual text-white w-full py-3 rounded-xl font-medium text-xs shadow-md flex items-center justify-center gap-2 cursor-pointer">
-                    <i class="fa-solid fa-paper-plane"></i> <span data-i18n="sendBtn">በኢሜይል መተግበሪያ ላክ</span>
-                </button>
-            </form>
-            <div class="mt-3 text-center">
-                <a href="mailto:rehobotmahiber@gmail.com" data-i18n="directEmail" class="text-xs text-orange-600 hover:underline font-medium">
-                    ቀጥታ ኢሜይል ክፈት <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-                </a>
-            </div>
+      <form id="mailForm">
+        <div class="form-group">
+          <label for="mName">ስም</label>
+          <input id="mName" type="text" required placeholder="ስምዎን ያስገቡ">
         </div>
-    </div>
+        <div class="form-group">
+          <label for="mSubject">ርዕስ</label>
+          <input id="mSubject" type="text" required placeholder="የመልእክቱ ርዕስ">
+        </div>
+        <div class="form-group">
+          <label for="mBody">መልእክት</label>
+          <textarea id="mBody" rows="3" required placeholder="መልእክትዎን እዚህ ይጻፉ..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">ኢሜይል ላክ</button>
+      </form>
+    </section>
+  </main>
 
-    <!-- Script Logic -->
-    <script>
-        let currentLang = 'am';
+  <footer>
+    © <span id="yr"></span> ርኆቦት መንፈሳዊ ማህበር. All rights reserved.
+  </footer>
+</div>
 
-        const translations = {
-            am: {
-                title: "ርኆቦት መንፈሳዊ ማህበር",
-                bio: "«እግዚአብሔር አሁን ስፍራ አሰፋልን፥ በምድርም ላይ እንበዛለን።» (ዘፍ 26:22)",
-                tiktok: "ቲክቶክ (TikTok)",
-                youtube: "ዩቲዩብ (YouTube)",
-                telegram: "ቴሌግራም ቻናል (Telegram)",
-                facebook: "ፌስቡክ ገጽ (Facebook)",
-                instagram: "ኢንስታግራም (Instagram)",
-                btnDonate: "ለመደገፍ ብቻ",
-                btnEmail: "ኢሜይል ይላኩልን",
-                modalDonateTitle: "ለመደገፍ የባንክ አካውንቶች",
-                modalDonateSub: "ለማህበራችን አገልግሎት ድጋፍ ያድርጉ",
-                acc1: "አካውንት 1",
-                acc2: "አካውንት 2",
-                copyBtn: "ቁጥሩን ቅዳ",
-                receiptText: "ድጋፍ ከሰጡ በኋላ የከፈሉበትን ደረሰኝ (Screenshot) በቴሌግራም ይላኩልን።",
-                receiptBtn: "ደረሰኝ በቴሌግራም ላክ",
-                modalEmailTitle: "ኢሜይል ይላኩልን",
-                modalEmailSub: "መልዕክትዎን በቀጥታ ይጻፉ",
-                emailLabelText: "የማህበሩ ኢሜይል አድራሻ",
-                copyAddress: "አድራሻ ቅዳ",
-                labelName: "የእርስዎ ስም (Your Name)",
-                namePlaceholder: "ሙሉ ስምዎን ያስገቡ...",
-                labelSubject: "ርዕስ (Subject)",
-                subjectPlaceholder: "የመልዕክቱ ርዕስ...",
-                labelMessage: "መልዕክትዎ (Your Message)",
-                msgPlaceholder: "መልዕክትዎን ወይም የጸሎት ጥያቄዎን እዚህ ይጻፉ...",
-                sendBtn: "በኢሜይል መተግበሪያ ላክ",
-                directEmail: "ቀጥታ ኢሜይል ክፈት",
-                toastCopied: "ተቀድቷል!"
-            },
-            en: {
-                title: "Rehobot Spiritual Association",
-                bio: "“And he called the name of it Rehobot; and he said, For now the Lord hath made room for us, and we shall be fruitful in the land.” (Gen 26:22)",
-                tiktok: "TikTok",
-                youtube: "YouTube",
-                telegram: "Telegram Channel",
-                facebook: "Facebook Page",
-                instagram: "Instagram",
-                btnDonate: "Donate Only",
-                btnEmail: "Contact Email",
-                modalDonateTitle: "Bank Accounts for Donation",
-                modalDonateSub: "Support our spiritual association",
-                acc1: "Account 1",
-                acc2: "Account 2",
-                copyBtn: "Copy",
-                receiptText: "Please send your transfer receipt (Screenshot) via Telegram after donating.",
-                receiptBtn: "Send Receipt via Telegram",
-                modalEmailTitle: "Send us an Email",
-                modalEmailSub: "Write your message directly",
-                emailLabelText: "Association Email Address",
-                copyAddress: "Copy Address",
-                labelName: "Your Name",
-                namePlaceholder: "Enter your full name...",
-                labelSubject: "
+<script>
+(function () {
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var val = document.getElementById(btn.getAttribute('data-copy')).textContent.trim();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(val).catch(function () {});
+      }
+      alert('ተቀድቷል: ' + val);
+    });
+  });
+
+  document.getElementById('mailForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = document.getElementById('mName').value.trim();
+    var subj = document.getElementById('mSubject').value.trim();
+    var body = document.getElementById('mBody').value.trim();
+    var fullBody = 'ስም: ' + name + '\n\n' + body;
+    window.location.href = 'mailto:rehobotmahiber@gmail.com?subject=' + encodeURIComponent(subj) + '&body=' + encodeURIComponent(fullBody);
+  });
+})();
+</script>
+</body>
+</html>
