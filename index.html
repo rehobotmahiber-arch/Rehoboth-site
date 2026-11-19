@@ -190,13 +190,22 @@
     font-size: 14px;
     color: #111827;
   }
-  .bank-head img {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-    border-radius: 6px;
-    background: #fff;
-    border: 1px solid #e5e7eb;
+  .bank-badge {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    color: #ffffff;
+    flex-shrink: 0;
+  }
+  .bank-wegagen {
+    background: #1b5e20;
+  }
+  .bank-ahadu {
+    background: #7f1d1d;
   }
   .copy-row {
     display: flex;
@@ -375,7 +384,7 @@
 
       <div class="bank-item">
         <div class="bank-head">
-          <img src="wegagen.jpg" alt="" onerror="this.style.display='none'">
+          <span class="bank-badge bank-wegagen" aria-hidden="true"><i class="fa-solid fa-building-columns"></i></span>
           <span>ወጋገን ባንክ (Wegagen Bank)</span>
         </div>
         <div class="copy-row">
@@ -386,7 +395,7 @@
 
       <div class="bank-item">
         <div class="bank-head">
-          <img src="ahadu.jpg" alt="" onerror="this.style.display='none'">
+          <span class="bank-badge bank-ahadu" aria-hidden="true"><i class="fa-solid fa-landmark"></i></span>
           <span>አሀዱ ባንክ (Ahadu Bank)</span>
         </div>
         <div class="copy-row">
